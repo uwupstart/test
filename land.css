@@ -1,0 +1,331 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+  background: black;
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+@font-face {
+    font-family: 'DIN Condensed Bold';
+    font-style: normal;
+    font-weight: normal;
+    src: local('DIN Condensed Bold'), url('DINCondensed-Bold.woff') format('woff');
+    }
+@font-face {
+    font-family: 'Burea GroThreeSeven';
+    font-style: normal;
+    font-weight: normal;
+    src: url('BureauGrotThreeSevenRegular.otf') format('opentype');
+    }
+
+body{
+    font-family: 'Lato', sans-serif;
+    color: white;
+    overflow-x: hidden
+}
+
+/* preloader animation */
+.preload{
+    display: flex;
+    top: 0;
+    width: 100%;
+    background: white;
+    animation-name: preload;
+    animation-duration: 3s;
+    justify-content: center;
+}
+.preload h1{
+    color: black;
+}
+
+.preload svg{
+    fill: black;
+}
+@keyframes preload{
+    0% {
+        height: 99vh;
+    }
+    50% {
+        height: 99vh;
+    }
+    100% {
+        height: 0vh;
+    }
+}
+
+.preload-bot{
+    display: flex;
+    background: #FAD756;
+    animation-name: preload-bottom;
+    animation-duration: 1.5s;
+}
+
+@keyframes preload-bottom{
+    0% {
+        height: 1vh;
+        width: 0%;
+    }
+    95%{
+        height: 1vh;
+    }
+    100% {
+        height: 0vh;
+        width: 100%;
+    }
+}
+
+/* Navigation */
+#menuToggle
+{
+  background: black;
+  display: block;
+  position: fixed;
+  top: 10%;
+  left: 50px;
+  
+  z-index: 1;
+  
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+#menuToggle a
+{
+  text-decoration: none;
+  color: #232323;
+  
+  transition: color 0.3s ease;
+}
+
+#menuToggle a:hover
+{
+  color: #FAD756;;
+}
+
+
+#menuToggle input
+{
+  display: block;
+  width: 40px;
+  height: 32px;
+  position: absolute;
+  top: -7px;
+  left: -5px;
+  
+  cursor: pointer;
+  
+  opacity: 0; /* hide this */
+  z-index: 2; /* and place it over the hamburger */
+  
+  -webkit-touch-callout: none;
+}
+
+/*
+ * Just a quick hamburger
+ */
+#menuToggle span
+{
+  display: block;
+  width: 35px;
+  height: 5px;
+  margin-bottom: 5px;
+  position: relative;
+  
+  background: white;
+  border-radius: 3px;
+  
+  z-index: 1;
+  
+  transform-origin: 4px 0px;
+  
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              opacity 0.55s ease;
+}
+
+#menuToggle span:first-child
+{
+  transform-origin: 0% 0%;
+}
+
+#menuToggle span:nth-last-child(2)
+{
+  transform-origin: 0% 100%;
+}
+
+/* 
+ * Transform all the slices of hamburger
+ * into a crossmark.
+ */
+#menuToggle input:checked ~ span
+{
+  opacity: 1;
+  transform: rotate(45deg) translate(-2px, -1px);
+  background: #232323;
+}
+
+/*
+ * But let's hide the middle one.
+ */
+#menuToggle input:checked ~ span:nth-last-child(3)
+{
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+/*
+ * Ohyeah and the last one should go the other direction
+ */
+#menuToggle input:checked ~ span:nth-last-child(2)
+{
+  transform: rotate(-45deg) translate(0, -1px);
+}
+
+/*
+ * Make this absolute positioned
+ * at the top left of the screen
+ */
+ #menu
+ {
+   position: absolute;
+   width: 200vh;
+   height: 100vh;
+   clip-path: polygon(0 0, 53% 0, 88% 100%, 0% 100%);
+   margin: -100px 0 0 -50px;
+   padding: 50px;
+   padding-top: 125px;
+   
+   
+   background: #ededed;
+   background-position: right;
+   background-size: 75%;
+   background-repeat: no-repeat;
+   list-style-type: none;
+   -webkit-font-smoothing: antialiased;
+   /* to stop flickering of text in safari */
+   
+   transform-origin: 0% 0%;
+   transform: translate(-100%, 0);
+   
+   transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+ }
+ 
+
+ #menu li
+ {
+   padding: 10px 0;
+   font-size: calc(8% + 1vw + 1vh);
+ }
+
+/*
+ * And let's slide it in from the left
+ */
+#menuToggle input:checked ~ ul
+{
+  transform: none;
+}
+#ack{
+    margin-top: 20%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+body{
+    background: url(images/biggerbackground.jpg);
+    background-size: 120%;
+    background-color: black;
+    background-repeat: repeat;
+    background-position: center;
+}
+
+h1{
+  font-family: "DIN Condensed bold";
+  font-size: calc(250% + 1vw + 1vh);
+}
+p{
+  margin-top: 1em;
+  font-size: calc(50% + 1vw + 1vh);
+  line-height: 1.1em;
+}
+/* Small devices (landscape phones, 544px and up) */
+@media (min-width: 544px) {  
+  /* h1 {font-size:1.5rem;} 1rem = 16px */
+  #ack{margin-top: 20%;}
+  #menu li
+  {
+    font-size: calc(5% + .75vw + 1vh);
+  }
+}
+ 
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) {  
+  #menu{
+   background-image: url("images/menu-images/menu-image5-min.jpg");
+  }
+  #menuToggle
+  {
+    background: none;}
+ }
+ 
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+  
+}
+ 
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {  
+
+}
+@media screen and (min-width: 320px) and (max-width: 767px) and (orientation: landscape) {
+  html {
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    width: 100vh;
+    overflow-x: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
+  }
+}
